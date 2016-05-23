@@ -49,9 +49,6 @@ function populateResults(results){
           <i class="user icon"></i>                                            \
           '+card.shares+'                                                      \
         </span>                                                                \
-        <span class="right floated">                                           \
-          '+card.comments+'                                                    \
-        </span>                                                                \
       </div>'
     }))
   })

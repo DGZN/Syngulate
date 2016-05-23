@@ -16,16 +16,20 @@ html, body {
 <script src="./dist/semantic.min.js"></script>
 <script src="./js/FB.js"></script>
 </body>
-<div class="ui attached stackable menu hidden">
+<div class="ui attached stackable menu">
   <div class="ui container">
     <a class="item">
-      <i class="home icon"></i> Dashboard
+      <i class="dashboard icon"></i> Dashboard
     </a>
     <a class="item">
-      <i class="grid layout icon"></i> Articles
+      <i class="grid browser icon"></i> Articles
     </a>
     <a class="item">
-      <i class="mail icon"></i> Analytics
+      <i class="users icon"></i> Analytics
+    </a>
+    <a class="right item">
+      <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+      </fb:login-button>
     </a>
   </div>
 </div>
