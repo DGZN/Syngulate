@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Syngulate Administrator Dashboard</title>
+<meta charset="UTF-8">
+</head>
+<style>
+html, body {
+    height: 100%;
+}
+</style>
+<body>
+<link rel="stylesheet" href="/css/style.css"/>
+<link rel="stylesheet" type="text/css" href="./dist/semantic.min.css"/>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="./dist/semantic.min.js"></script>
+<script src="./js/FB.js"></script>
+</body>
+<div class="ui attached stackable menu hidden">
+  <div class="ui container">
+    <a class="item">
+      <i class="home icon"></i> Dashboard
+    </a>
+    <a class="item">
+      <i class="grid layout icon"></i> Articles
+    </a>
+    <a class="item">
+      <i class="mail icon"></i> Analytics
+    </a>
+  </div>
+</div>
+<div class="ui raised very padded fluid container segment">
+  <div class="ui center aligned container">
+    <div class="search ui big icon input">
+      <form method="post" name="search" id="search">
+        <input type="text" id="pageID" placeholder="Facebook Page">
+        <i class="search icon"></i>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="ui raised very padded fluid container segment">
+  <div class="ui center aligned fluid container">
+    <div id="results" class="ui link cards">
+    </div>
+  </div>
+</div>
+
+<script src="./js/script.js"></script>
+</html>

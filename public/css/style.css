@@ -1,0 +1,11 @@
+body {
+  background-image: url('/images/panel_bck.jpg') !important;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.search input {
+  width: 60rem;
+}
