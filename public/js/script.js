@@ -1,12 +1,23 @@
 $(function(){
 
-  $('.tabular.menu .item').tab({history:false});
+  $('.tabular.menu .item')
+
+  .tab({
+    history:false
+  })
+  ;
+
+  $('.ui.sticky')
+  .sticky({
+    context: '#example1'
+  })
+  ;
 
   $('#search').submit(function(e){
     e.preventDefault();
     var pageID = $('#pageID').val()
     $('#results').html('')
-    FB.api('/' + pageID + '/posts?fields=link,full_picture,type,name,likes.limit(1).summary(true),shares,comments.limit(1).summary(true)', function(feed) {
+    FB.api('/' + pageID + '/posts?fields=link,created_time,full_picture,type,name,description,likes.limit(1).summary(true),shares,comments.limit(1).summary(true)', function(feed) {
       populateResults(feed)
       fetch(feed.paging.next)
     });
@@ -37,6 +48,9 @@ function populateResults(results){
         , likes: item.likes.summary ? item.likes.summary.total_count : 0
         , comments: item.comments.summary ? item.comments.summary.total_count : 0
         , link: item.link
+        , description: item.description || ''
+        , date: item.created_time
+        , elapsedTime: moment(item.created_time).fromNow()
       }
       if (card.type == 'photo') {
         card.name = ''
@@ -47,18 +61,21 @@ function populateResults(results){
   data.sort((a, b) => {
     return b.likes - a.likes
   })
-  data.pop()
+  //data.pop()
   data.map((card, i) => {
+    console.log(card);
     $('#results').append($('<div/>', {
       class: 'card'
     , "data-link": card.link
     , html: '<div class="image">                                               \
         <i class="card-type '+card.type+' "></i>                               \
         <img src="'+card.img+'">                                               \
+        <span class="card-time">'+card.elapsedTime+'</span>                    \
       </div>                                                                   \
       <div class="content">                                                    \
         <div class="header">'+card.name+'</div>                                \
         <div class="meta">                                                     \
+        '+card.description+'                                                   \
         </div>                                                                 \
         <div class="description">                                              \
         </div>                                                                 \
@@ -81,6 +98,11 @@ function populateResults(results){
           var win = window.open($(this).data('link'), '_blank');
           win.focus();
         }
-    }))
+    }).hover(function(){
+        $(this).find('.card-type,.card-time').fadeOut(0)
+      }, function(){
+        $(this).find('.card-type,.card-time').fadeIn(2800)
+      })
+    )
   })
 }

@@ -14,6 +14,7 @@ html, body {
 <link rel="stylesheet" type="text/css" href="./dist/semantic.min.css"/>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="./dist/semantic.min.js"></script>
+<script src="./js/moment.min.js"></script>
 <script src="./js/FB.js"></script>
 </body>
 <div class="ui attached stackable menu">
@@ -33,19 +34,33 @@ html, body {
     </a>
   </div>
 </div>
-<div class="ui raised very padded fluid container segment">
-  <div class="ui center aligned container">
-    <div class="search ui big icon input">
-      <form method="post" name="search" id="search">
-        <input type="text" id="pageID" placeholder="Facebook Page">
-        <i class="search icon"></i>
-      </form>
+<form method="post" name="search" id="search">
+  <div class="ui raised very padded fluid container segment">
+    <div class="ui center aligned container">
+      <div class="ui three column grid">
+        <div class="row">
+          <div class="two wide column">
+            <p></p>
+          </div>
+          <div class="twelve wide column">
+            <div class="search ui big icon input">
+              <input type="text" id="pageID" placeholder="Facebook Page">
+              <div class="ui right aligned text">
+              </div>
+            </div>
+          </div>
+          <div class="two wide column">
+            <p></p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</form>
 <div class="ui raised very padded fluid container segment">
   <div class="ui center aligned fluid container">
     <div id="results" class="ui link cards">
+
     </div>
   </div>
 </div>
