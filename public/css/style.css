@@ -9,3 +9,46 @@ body {
 .search input {
   width: 60rem;
 }
+
+.card-type {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 30px;
+  height: 30px;
+  background: white;
+  color: black;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-top-right-radius: 2.3px;
+  border-bottom-right-radius: 2.3px;
+  box-shadow: 1px 1px 1px rgba(64,64,64,.4);
+}
+
+.card-type.link {
+  background-image: url('/images/link_icon.png');
+}
+
+.card-type.photo {
+  background-image: url('/images/image_icon.png');
+}
+
+.card-type.video {
+  background-image: url('/images/video_icon.png');
+}
+
+.likes.icon {
+  background-image: url('/images/likes_icon.png');
+}
+
+.shares.icon {
+  background-image: url('/images/shares_icon.png');
+}
+
+._comments.icon {
+  background-image: url('/images/comments_icon.png');
+}
+
+.extra.content span {
+  padding-right: 1rem !important;
+}
