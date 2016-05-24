@@ -3,12 +3,28 @@ body {
 }
 
 .hidden {
-  display: none !important;
+  opacity: 0;
 }
 
 .search.ui {
   width: 100%;
 }
+
+.analytics.ui {
+  margin-top: 0.2rem !important;
+  margin-left: 1rem !important;
+}
+
+
+#total-likes {
+  color: #0EBFE9;
+}
+
+#total-likes-today {
+  color: rgba(64,64,64,.5);
+  font-weight: bold;
+}
+
 
 .meta {
   max-height: 200px;

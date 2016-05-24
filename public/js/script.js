@@ -17,6 +17,10 @@ $(function(){
     e.preventDefault();
     var pageID = $('#pageID').val()
     $('#results').html('')
+    $('#like-stats-total, #like-stats-today').addClass('hidden')
+    FB.api('/' + pageID + '/insights/page_fans_country?period=lifetime', function(insights) {
+      populateAnaltics(insights.data)
+    })
     FB.api('/' + pageID + '/posts?fields=link,created_time,full_picture,type,name,description,likes.limit(1).summary(true),shares,comments.limit(1).summary(true)', function(feed) {
       populateResults(feed)
       fetch(feed.paging.next)
@@ -25,8 +29,10 @@ $(function(){
 
 
 })
+
 const maxFetch = 4;
 var fetchCount = 0;
+
 function fetch(url){
   $.get(url, function(data){
     populateResults(data)
@@ -34,6 +40,32 @@ function fetch(url){
     if (fetchCount < maxFetch)
       fetch(data.paging.next)
   })
+}
+
+function populateAnaltics(stats){
+  var days = [];
+  var total = 0;
+  console.log('Analytics', stats[0]);
+  stats[0].values.map(function(day){
+    var count = 0;
+    for (i in day.value) {
+      count += parseInt(day.value[i])
+    }
+    total += count
+    days.push(count)
+  })
+  var today = days[days.length-1] - days[days.length-2]
+  $('#like-stats-total, #like-stats-today').removeClass('hidden')
+  var options = {
+    useEasing : true,
+    useGrouping : true,
+    separator : ',',
+    decimal : '.',
+    prefix : '',
+    suffix : ''
+  };
+  var totalLikes = new CountUp("total-likes", 0, days[days.length-1], 0, 2.5, options);
+  totalLikes.start();
 }
 
 function populateResults(results){
@@ -63,7 +95,6 @@ function populateResults(results){
   })
   //data.pop()
   data.map((card, i) => {
-    console.log(card);
     $('#results').append($('<div/>', {
       class: 'card'
     , "data-link": card.link
