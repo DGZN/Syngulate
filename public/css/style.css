@@ -29,6 +29,8 @@ body {
 .meta {
   max-height: 200px;
   overflow: hidden;
+  text-align: left;
+  padding-top: 0.9rem;
 }
 
 .card-type {
