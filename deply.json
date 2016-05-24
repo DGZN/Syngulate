@@ -1,0 +1,12 @@
+{
+  "apps" : [{
+    "name"        : "Syngulate",
+    "script"      : "./bin/www",
+    "args"        : ["DEBUG=syngulate:*"],
+    "merge_logs"  : true,
+    "env": {
+     "NODE_ENV": "production"
+   , "DEBUG": "syngulate:*"
+    }
+  }]
+}
