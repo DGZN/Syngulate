@@ -41,6 +41,9 @@ body {
   font-weight: bold;
 }
 
+#results .ui.card>.content>.header, .ui.cards>.card>.content>.header {
+  text-align: left;
+}
 
 .meta {
   max-height: 200px;
