@@ -22,7 +22,7 @@ $(function(){
       }, 250)
       setTimeout(function(){
         populateAnaltics(insights.data)
-      }, 150)
+      }, 0)
     })
     FB.api('/' + pageID + '/posts?fields=link,created_time,full_picture,type,name,description,likes.limit(1).summary(true),shares,comments.limit(1).summary(true)', function(feed) {
       populateResults(feed)
