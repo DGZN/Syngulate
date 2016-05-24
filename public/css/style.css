@@ -15,6 +15,18 @@ body {
   margin-left: 1rem !important;
 }
 
+.ui .filters.dropdown {
+  position: relative;
+  margin-top: 0.8rem;
+  left: -15px;
+}
+
+.ui .filters .ui.avatar.image {
+  position: relative;
+  top: -4px;
+  right: -4px;
+}
+
 
 #total-likes {
   color: #0EBFE9;

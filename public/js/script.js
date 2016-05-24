@@ -7,10 +7,8 @@ $(function(){
   })
   ;
 
-  $('.ui.sticky')
-  .sticky({
-    context: '#example1'
-  })
+  $('.ui.dropdown')
+    .dropdown()
   ;
 
   $('#search').submit(function(e){
@@ -27,11 +25,41 @@ $(function(){
     });
   })
 
+  $(document).on('click', function(evt) {
+    if ( $(evt.target).data('type') ) {
+      var filter = $(evt.target).data('type');
+      $('.result').each(function(i){
+        var type = $(this).data('type')
+        if (type !== filter) {
+          $(this).parent().fadeOut(250)
+        } else {
+          $(this).parent().fadeIn(550)
+        }
+      })
+    }
+  });
 
 })
 
 const maxFetch = 4;
 var fetchCount = 0;
+
+function filterResults(){
+  var filter = $(this).data('type')
+  console.log("filter", filter);
+  $('.result').each(function(i, card){
+    if (filter == 'all') {
+      $(this).fadeIn(550)
+    } else {
+      var type = $(this).data('type')
+      if (type !== filter) {
+        $(this).fadeOut(200)
+      } else {
+        $(this).fadeIn(550)
+      }
+    }
+  })
+}
 
 function fetch(url){
   $.get(url, function(data){
@@ -45,7 +73,6 @@ function fetch(url){
 function populateAnaltics(stats){
   var days = [];
   var total = 0;
-  console.log('Analytics', stats[0]);
   stats[0].values.map(function(day){
     var count = 0;
     for (i in day.value) {
@@ -70,7 +97,7 @@ function populateAnaltics(stats){
 
 function populateResults(results){
   var data = []
-  results.data.map((item) => {
+  results.data.map(function(item){
     if (item.type !== 'status') {
       var card = {
           name: item.name || ''
@@ -98,7 +125,7 @@ function populateResults(results){
     $('#results').append($('<div/>', {
       class: 'card'
     , "data-link": card.link
-    , html: '<div class="image">                                               \
+    , html: '<div class="result image" data-type="'+card.type+'">              \
         <i class="card-type '+card.type+' "></i>                               \
         <img src="'+card.img+'">                                               \
         <span class="card-time">'+card.elapsedTime+'</span>                    \
