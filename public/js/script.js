@@ -17,7 +17,12 @@ $(function(){
     $('#results').html('')
     $('#like-stats-total, #like-stats-today').addClass('hidden')
     FB.api('/' + pageID + '/insights/page_fans_country?period=lifetime', function(insights) {
-      populateAnaltics(insights.data)
+      $('#like-stats-total').velocity({
+        height: '120px'
+      }, 300)
+      setTimeout(function(){
+        populateAnaltics(insights.data)
+      }, 250)
     })
     FB.api('/' + pageID + '/posts?fields=link,created_time,full_picture,type,name,description,likes.limit(1).summary(true),shares,comments.limit(1).summary(true)', function(feed) {
       populateResults(feed)
@@ -30,6 +35,9 @@ $(function(){
       var filter = $(evt.target).data('type');
       $('.result').each(function(i){
         var type = $(this).data('type')
+        if (filter == 'all') {
+          return $(this).parent().fadeIn(1)
+        }
         if (type !== filter) {
           $(this).parent().fadeOut(1)
         } else {
@@ -46,16 +54,15 @@ var fetchCount = 0;
 
 function filterResults(){
   var filter = $(this).data('type')
-  console.log("filter", filter);
   $('.result').each(function(i, card){
     if (filter == 'all') {
       $(this).fadeIn(550)
     } else {
       var type = $(this).data('type')
       if (type !== filter) {
-        $(this).fadeOut(200)
+        $(this).fadeOut(500)
       } else {
-        $(this).fadeIn(550)
+        $(this).fadeIn(1200)
       }
     }
   })
@@ -65,8 +72,11 @@ function fetch(url){
   $.get(url, function(data){
     populateResults(data)
     fetchCount++
-    if (fetchCount < maxFetch)
-      fetch(data.paging.next)
+    if (fetchCount < maxFetch) {
+      setTimeout(function(){
+        fetch(data.paging.next)
+      }, 1000)
+    }
   })
 }
 
@@ -122,45 +132,47 @@ function populateResults(results){
   })
   //data.pop()
   data.map((card, i) => {
-    $('#results').append($('<div/>', {
-      class: 'card'
-    , "data-link": card.link
-    , html: '<div class="result image" data-type="'+card.type+'">              \
+    setTimeout(function(){
+      $('<div/>', {
+        class: 'card'
+        , "data-link": card.link
+        , html: '<div class="result image" data-type="'+card.type+'">          \
         <i class="card-type '+card.type+' "></i>                               \
         <img src="'+card.img+'">                                               \
         <span class="card-time">'+card.elapsedTime+'</span>                    \
-      </div>                                                                   \
-      <div class="content">                                                    \
+        </div>                                                                 \
+        <div class="content">                                                  \
         <div class="header">'+card.name+'</div>                                \
         <div class="meta">                                                     \
         '+card.description+'                                                   \
         </div>                                                                 \
         <div class="description">                                              \
         </div>                                                                 \
-      </div>                                                                   \
-      <div class="extra content">                                              \
+        </div>                                                                 \
+        <div class="extra content">                                            \
         <span>                                                                 \
-          <i class="likes icon"></i>                                           \
-          '+card.likes+'                                                       \
+        <i class="likes icon"></i>                                             \
+        '+card.likes+'                                                         \
         </span>                                                                \
         <span>                                                                 \
-          <i class="_comments icon"></i>                                       \
-          '+card.comments+'                                                    \
+        <i class="_comments icon"></i>                                         \
+        '+card.comments+'                                                      \
         </span>                                                                \
         <span>                                                                 \
-          <i class="shares icon"></i>                                          \
-          '+card.shares+'                                                      \
+        <i class="shares icon"></i>                                            \
+        '+card.shares+'                                                        \
         </span>                                                                \
-      </div>'
-      , click: function(){
+        </div>'
+        , click: function(){
           var win = window.open($(this).data('link'), '_blank');
           win.focus();
         }
-    }).hover(function(){
+      }).hide().appendTo('#results').fadeIn(750)
+      .hover(function(){
         $(this).find('.card-type,.card-time').fadeOut(0)
       }, function(){
-        $(this).find('.card-type,.card-time').fadeIn(2800)
+        $(this).find('.card-type,.card-time').fadeIn(0)
       })
-    )
+    }, 250)
   })
 }

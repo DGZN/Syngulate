@@ -15,6 +15,10 @@ body {
   margin-left: 1rem !important;
 }
 
+#like-stats-total {
+  height: 0px;
+}
+
 .ui .filters.dropdown {
   position: relative;
   margin-top: 0.8rem;
