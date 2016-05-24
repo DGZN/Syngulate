@@ -31,9 +31,9 @@ $(function(){
       $('.result').each(function(i){
         var type = $(this).data('type')
         if (type !== filter) {
-          $(this).parent().fadeOut(250)
+          $(this).parent().fadeOut(1)
         } else {
-          $(this).parent().fadeIn(550)
+          $(this).parent().fadeIn(1)
         }
       })
     }
