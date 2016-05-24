@@ -19,10 +19,10 @@ $(function(){
     FB.api('/' + pageID + '/insights/page_fans_country?period=lifetime', function(insights) {
       $('#like-stats-total').velocity({
         height: '120px'
-      }, 300)
+      }, 200)
       setTimeout(function(){
         populateAnaltics(insights.data)
-      }, 250)
+      }, 75)
     })
     FB.api('/' + pageID + '/posts?fields=link,created_time,full_picture,type,name,description,likes.limit(1).summary(true),shares,comments.limit(1).summary(true)', function(feed) {
       populateResults(feed)
@@ -167,12 +167,12 @@ function populateResults(results){
           var win = window.open($(this).data('link'), '_blank');
           win.focus();
         }
-      }).hide().appendTo('#results').fadeIn(750)
+      }).hide().appendTo('#results').fadeIn(250)
       .hover(function(){
         $(this).find('.card-type,.card-time').fadeOut(0)
       }, function(){
         $(this).find('.card-type,.card-time').fadeIn(0)
       })
-    }, 250)
+    }, i * 10)
   })
 }
