@@ -17,23 +17,13 @@ $(function(){
     })
   ;
 
+  loadPages()
+
   $('#search').submit(function(e){
     e.preventDefault();
     var pageID = $('#pageID').val()
-    $('#results').html('')
-    $('#like-stats-total, #like-stats-today').addClass('hidden-fields')
-    FB.api('/' + pageID + '/insights/page_fans_country?period=lifetime', function(insights) {
-      $('#like-stats-total').velocity({
-        height: '120px'
-      }, 250)
-      setTimeout(function(){
-        populateAnaltics(insights.data)
-      }, 250)
-    })
-    FB.api('/' + pageID + '/posts?fields=link,created_time,full_picture,type,name,description,likes.limit(1).summary(true),shares,comments.limit(1).summary(true)', function(feed) {
-      populateResults(feed)
-      fetch(feed.paging.next)
-    });
+    return console.log(pageID);
+    searchPage(pageID)
   })
 
   $(document).on('click', function(evt) {
@@ -193,6 +183,32 @@ function populateResults(results){
   })
 }
 
+function searchPage(pageID){
+  addPage(pageID)
+  $('#results').html('')
+  $('#like-stats-total, #like-stats-today').addClass('hidden-fields')
+  FB.api('/' + pageID + '/insights/page_fans_country?period=lifetime', function(insights) {
+    $('#like-stats-total').velocity({
+      height: '120px'
+    }, 250)
+    setTimeout(function(){
+      populateAnaltics(insights.data)
+    }, 250)
+  })
+  FB.api('/' + pageID + '/posts?fields=link,created_time,full_picture,type,name,description,likes.limit(1).summary(true),shares,comments.limit(1).summary(true)', function(feed) {
+    populateResults(feed)
+    fetch(feed.paging.next)
+  });
+}
+
+function addPage(pageID){
+  $.post('/api/v1/pages', {
+    fbID: pageID
+  }
+  , function(res){
+    console.log(res);
+  })
+}
 
 function addArticle(article, card){
   $.post('/api/v1/articles', article
@@ -201,4 +217,33 @@ function addArticle(article, card){
   })
   console.log("card", card);
   $(card).fadeOut(500)
+}
+
+function loadPages(){
+  $.get('/api/v1/pages', function(pages){
+    var content = []
+    for (i in pages) {
+      content.push({
+        pageID: pages[i].fbID
+      })
+    }
+    console.log("content", content);
+    $('.ui.search')
+    .search({
+      apiSettings: {
+        url: '//api.github.com/search/repositories?q={query}'
+      },
+      fields: {
+        title   : 'pageID'
+      },
+      source : content,
+      searchFields: [
+        'pageID'
+      ],
+      onSelect: function(result, response){
+        searchPage(result.pageID)
+      }
+    })
+    ;
+  })
 }
