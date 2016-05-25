@@ -11,18 +11,24 @@ $(function(){
     .dropdown()
   ;
 
+  $('.event.example .image')
+    .dimmer({
+      on: 'hover'
+    })
+  ;
+
   $('#search').submit(function(e){
     e.preventDefault();
     var pageID = $('#pageID').val()
     $('#results').html('')
-    $('#like-stats-total, #like-stats-today').addClass('hidden')
+    $('#like-stats-total, #like-stats-today').addClass('hidden-fields')
     FB.api('/' + pageID + '/insights/page_fans_country?period=lifetime', function(insights) {
       $('#like-stats-total').velocity({
         height: '120px'
       }, 250)
       setTimeout(function(){
         populateAnaltics(insights.data)
-      }, 0)
+      }, 250)
     })
     FB.api('/' + pageID + '/posts?fields=link,created_time,full_picture,type,name,description,likes.limit(1).summary(true),shares,comments.limit(1).summary(true)', function(feed) {
       populateResults(feed)
@@ -92,7 +98,7 @@ function populateAnaltics(stats){
     days.push(count)
   })
   var today = days[days.length-1] - days[days.length-2]
-  $('#like-stats-total, #like-stats-today').removeClass('hidden')
+  $('#like-stats-total, #like-stats-today').removeClass('hidden-fields')
   var options = {
     useEasing : true,
     useGrouping : true,
@@ -110,7 +116,8 @@ function populateResults(results){
   results.data.map(function(item){
     if (item.type !== 'status') {
       var card = {
-          name: item.name || ''
+          fbID: item.id
+        , name: item.name || ''
         , type: item.type
         , img:  item.full_picture
         , shares: item.shares ? item.shares.count : 0
@@ -136,36 +143,45 @@ function populateResults(results){
       $('<div/>', {
         class: 'card'
         , "data-link": card.link
-        , html: '<div class="result image" data-type="'+card.type+'">          \
-        <i class="card-type '+card.type+' "></i>                               \
-        <img src="'+card.img+'">                                               \
-        <span class="card-time">'+card.elapsedTime+'</span>                    \
-        </div>                                                                 \
-        <div class="content">                                                  \
-        <div class="header">'+card.name+'</div>                                \
-        <div class="meta">                                                     \
-        '+card.description+'                                                   \
-        </div>                                                                 \
-        <div class="description">                                              \
-        </div>                                                                 \
-        </div>                                                                 \
-        <div class="extra content">                                            \
-        <span>                                                                 \
-        <i class="likes icon"></i>                                             \
-        '+card.likes+'                                                         \
-        </span>                                                                \
-        <span>                                                                 \
-        <i class="_comments icon"></i>                                         \
-        '+card.comments+'                                                      \
-        </span>                                                                \
-        <span>                                                                 \
-        <i class="shares icon"></i>                                            \
-        '+card.shares+'                                                        \
-        </span>                                                                \
+        , "data-card": card
+        , html: '<div class="result image" data-type="'+card.type+'">                             \
+        <i class="card-type '+card.type+' "></i>                                                  \
+        <img src="'+card.img+'">                                                                  \
+        <span class="card-time" onClick="addArticle.bind('+card+','+this+')">'+card.elapsedTime+'</span>   \
+        <span class="add-article">                                                                \
+          <i class="add circle icon"></i>                                                         \
+        </span>                                                                                   \
+        </div>                                                                                    \
+        <div class="content">                                                                     \
+        <div class="header">'+card.name+'</div>                                                   \
+        <div class="meta">                                                                        \
+        '+card.description+'                                                                      \
+        </div>                                                                                    \
+        <div class="description">                                                                 \
+        </div>                                                                                    \
+        </div>                                                                                    \
+        <div class="extra content">                                                               \
+        <span>                                                                                    \
+        <i class="likes icon"></i>                                                                \
+        '+card.likes+'                                                                            \
+        </span>                                                                                   \
+        <span>                                                                                    \
+        <i class="_comments icon"></i>                                                            \
+        '+card.comments+'                                                                         \
+        </span>                                                                                   \
+        <span>                                                                                    \
+        <i class="shares icon"></i>                                                               \
+        '+card.shares+'                                                                           \
+        </span>                                                                                   \
         </div>'
-        , click: function(){
-          var win = window.open($(this).data('link'), '_blank');
-          win.focus();
+        , click: function(e){
+          if (e.target.tagName == 'IMG') {
+            var win = window.open($(this).data('link'), '_blank');
+            win.focus();
+          }
+          if (e.target.tagName == 'I') {
+            addArticle(card, e.currentTarget)
+          }
         }
       }).hide().appendTo('#results').fadeIn(75)
       .hover(function(){
@@ -175,4 +191,14 @@ function populateResults(results){
       })
     }, i * 55)
   })
+}
+
+
+function addArticle(article, card){
+  $.post('/api/v1/articles', article
+  , function(res){
+    console.log(res);
+  })
+  console.log("card", card);
+  $(card).fadeOut(500)
 }

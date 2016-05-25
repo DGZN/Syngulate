@@ -5,14 +5,17 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var graph     = require('fbgraph');
 var app = express();
+var db = require('./db');
+var api = require('./controllers/api');
 
+const Article = require('./models/article');
 
 app.set('views', path.join(__dirname, 'public'));
 app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(function (req, res, next) {
@@ -34,9 +37,20 @@ var conf = {
 
 // Routes
 
+app.use('/api/v1', api);
+
 app.get('/', function(req, res){
   res.render("index", { title: "click link to connect" });
 });
+
+app.get('/articles', function(req, res){
+  Article.find(function(err, articles){
+    if (err)
+      throw err;
+    res.sendFile(path.join(__dirname + '/public/articles.html'));
+  });
+});
+
 
 app.get('/auth/facebook', function(req, res) {
 
@@ -112,7 +126,7 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  res.render('error', {
+  res.send({
     message: err.message,
     error: {}
   });

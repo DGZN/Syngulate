@@ -9,10 +9,10 @@
 8 verbose lifecycle Express-Scaffold-App@0.0.0~start: unsafe-perm in lifecycle true
 9 verbose lifecycle Express-Scaffold-App@0.0.0~start: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/DIGIAIR/dgzn/syngulate/node_modules/.bin:/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:/opt/local/bin:/opt/local/sbin:/Users/DIGIAIR/.composer/vendor/bin/:/Applications/MAMP/bin/php/php5.6.2/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/opt/ImageMagick/bin:./node_modules/.bin:/Users/DIGIAIR/.rvm/bin
 10 verbose lifecycle Express-Scaffold-App@0.0.0~start: CWD: /Users/DIGIAIR/dgzn/syngulate
-11 silly lifecycle Express-Scaffold-App@0.0.0~start: Args: [ '-c', 'node ./bin/www' ]
+11 silly lifecycle Express-Scaffold-App@0.0.0~start: Args: [ '-c', 'DEBUG=syngulate:* node ./bin/www' ]
 12 silly lifecycle Express-Scaffold-App@0.0.0~start: Returned: code: 1  signal: null
 13 info lifecycle Express-Scaffold-App@0.0.0~start: Failed to exec start script
-14 verbose stack Error: Express-Scaffold-App@0.0.0 start: `node ./bin/www`
+14 verbose stack Error: Express-Scaffold-App@0.0.0 start: `DEBUG=syngulate:* node ./bin/www`
 14 verbose stack Exit status 1
 14 verbose stack     at EventEmitter.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/lifecycle.js:233:16)
 14 verbose stack     at emitTwo (events.js:87:13)
@@ -29,13 +29,13 @@
 19 error node v5.0.0
 20 error npm  v3.3.6
 21 error code ELIFECYCLE
-22 error Express-Scaffold-App@0.0.0 start: `node ./bin/www`
+22 error Express-Scaffold-App@0.0.0 start: `DEBUG=syngulate:* node ./bin/www`
 22 error Exit status 1
-23 error Failed at the Express-Scaffold-App@0.0.0 start script 'node ./bin/www'.
+23 error Failed at the Express-Scaffold-App@0.0.0 start script 'DEBUG=syngulate:* node ./bin/www'.
 23 error This is most likely a problem with the Express-Scaffold-App package,
 23 error not with npm itself.
 23 error Tell the author that this fails on your system:
-23 error     node ./bin/www
+23 error     DEBUG=syngulate:* node ./bin/www
 23 error You can get their info via:
 23 error     npm owner ls Express-Scaffold-App
 23 error There is likely additional logging output above.

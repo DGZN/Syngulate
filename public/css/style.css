@@ -2,7 +2,7 @@ body {
   background-image: url('/images/panel_bck.jpg') !important;
 }
 
-.hidden {
+.hidden-fields {
   opacity: 0;
 }
 
@@ -94,6 +94,10 @@ body {
   background-image: url('/images/video_icon.png');
 }
 
+.add-article {
+  z-index: 10;
+}
+
 .likes.icon {
   background-image: url('/images/likes_icon.png');
 }
@@ -108,4 +112,11 @@ body {
 
 .extra.content span {
   padding-right: 1rem !important;
+}
+
+
+/* ARTICLES */
+
+.remove {
+  cursor: pointer;
 }
