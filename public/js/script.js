@@ -22,7 +22,6 @@ $(function(){
   $('#search').submit(function(e){
     e.preventDefault();
     var pageID = $('#pageID').val()
-    return console.log(pageID);
     searchPage(pageID)
   })
 
