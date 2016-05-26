@@ -50,7 +50,7 @@ $(function(){
         <td>\
         '+article.comments+'\
         </td>\
-        <td class="right aligned">\
+        <td >\
         '+article.shares+'\
         </td>\
         <td>\
