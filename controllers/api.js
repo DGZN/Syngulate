@@ -14,6 +14,14 @@ router.get('/articles', function(req, res, next){
   });
 });
 
+router.get('/article/:id', function(req, res){
+  Article.find({ fbID:req.params.id }, function(err, article){
+    if (err)
+      throw err;
+    res.send(article[0]);
+  });
+});
+
 router.post('/articles', function(req, res) {
   var article = new Article(req.body).save((err, doc) => {
     if (err)

@@ -61,6 +61,7 @@ $(function(){
         </td>\
         <td>\
         <i class="remove article large circle icon" data-id="'+article._id+'"></i>\
+        <i class="edit article large icon" data-edit="'+article.fbID+'"></i>\
         </td>'
       }).appendTo('#articles').click(function(e){
         if ( $(e.target).data('id') ) {
@@ -70,7 +71,7 @@ $(function(){
             url: '/api/v1/articles/' + articleID,
             method: 'DELETE',
             success: function(res){
-              $(evt.target).parent().parent().fadeOut(250).remove()
+              $(e.target).parent().parent().fadeOut(250).remove()
             }
           });
         } else {
@@ -81,20 +82,27 @@ $(function(){
   })
 
   $(document).on('click', function(evt) {
-    if ( $(evt.target).data('id') ) {
-      var articleID = $(evt.target).data('id')
-      $.ajax({
-        type: "POST",
-        url: '/api/v1/articles/' + articleID,
-        method: 'DELETE',
-        success: function(res){
-          $(evt.target).parent().parent().fadeOut(250).remove()
-        }
-      });
-    }
-    if ( $(evt.target).data('article') ) {
-      var articleID = $(evt.target).data('id')
-      openPostModal($(this).data('article'))
+    evt.preventDefault()
+    if ( $(evt.target).data('edit') ) {
+      var articleID = $(evt.target).data('edit')
+      window.location = '/articles/' + articleID;
+      return false;
+    } else {
+      if ( $(evt.target).data('id') ) {
+        var articleID = $(evt.target).data('id')
+        $.ajax({
+          type: "POST",
+          url: '/api/v1/articles/' + articleID,
+          method: 'DELETE',
+          success: function(res){
+            $(evt.target).parent().parent().fadeOut(250).remove()
+          }
+        });
+      }
+      if ( $(evt.target).data('article') ) {
+        var articleID = $(evt.target).data('id')
+        openPostModal($(this).data('article'))
+      }
     }
   });
 
@@ -125,9 +133,9 @@ function publishArticle(article){
     $.post('https://graph.facebook.com/v2.6/'+account.id+'/feed', {
       published: 1
     , name: article.name
-    , caption: article.img
+    , caption: article.caption
     , description: article.description
-    , link: 'Syngulate.com'
+    , link: article.link
     , picture: article.img
     , message: article.description || ':)'
     , access_token: account.access_token

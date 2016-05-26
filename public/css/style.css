@@ -132,6 +132,13 @@ body {
   margin-right: 0.8rem !important;
 }
 
-.remove {
+.remove, .edit {
   cursor: pointer;
+}
+
+/* Edit Article */
+
+.edit-article-block {
+  position: relative;
+  height: 80%;
 }

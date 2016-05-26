@@ -51,6 +51,14 @@ app.get('/articles', function(req, res){
   });
 });
 
+app.get('/articles/:id', function(req, res){
+  Article.find({ fbID: req.params.id }, function(err, article){
+    if (err)
+      throw err;
+    res.sendFile(path.join(__dirname + '/public/edit.html'));
+  });
+});
+
 
 app.get('/auth/facebook', function(req, res) {
 
@@ -115,7 +123,7 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', {
+    res.send({
       message: err.message,
       error: err
     });
