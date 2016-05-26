@@ -24,7 +24,7 @@
       <i class="users icon"></i>
     </a>
     <a class="right item">
-      <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+      <fb:login-button scope="public_profile,email,manage_pages,publish_pages,pages_show_list" onlogin="checkLoginState();">
       </fb:login-button>
     </a>
   </div>
@@ -48,5 +48,41 @@
     </table>
   </div>
 </div>
+
+<div class="ui modal">
+  <i class="close icon"></i>
+  <div class="header" id="modal-title">
+    Profile Picture
+  </div>
+  <div class="image content">
+    <div class="ui medium image">
+      <img src="/images/avatar/large/chris.jpg" id="modal-img">
+    </div>
+    <div class="description">
+      <div id="modal-content">
+
+      </div>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="field">
+      <label>Publish To:</label>
+      <div class="ui sub header">Selection</div>
+      <select multiple="" name="skills" class="ui fluid normal dropdown" id="publish-pages-list">
+      <option value="">-- Managed FB Pages --</option>
+      </select>
+    </div>
+    </br>
+    <div class="ui black deny button">
+      Cancel
+    </div>
+    <div class="ui positive right labeled icon button">
+      Publish
+      <i class="checkmark icon"  onClick="publishArticle()"></i>
+    </div>
+  </div>
+</div>
+
+
 <script src="./js/articles.js"></script>
 </html>
