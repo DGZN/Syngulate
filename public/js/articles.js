@@ -64,6 +64,11 @@ $(function(){
         <i class="edit article large icon" data-edit="'+article.fbID+'"></i>\
         </td>'
       }).appendTo('#articles').click(function(e){
+        if ( $(evt.target).data('edit') ) {
+          var articleID = $(evt.target).data('edit')
+          window.location = '/articles/' + articleID;
+          return false;
+        }
         if ( $(e.target).data('id') ) {
           var articleID = $(e.target).data('id')
           $.ajax({
