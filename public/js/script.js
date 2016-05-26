@@ -107,6 +107,7 @@ function populateResults(results){
       var card = {
           fbID: item.id
         , name: item.name || ''
+        , caption: item.caption || ''
         , type: item.type
         , img:  item.full_picture
         , shares: item.shares ? item.shares.count : 0
@@ -194,7 +195,7 @@ function searchPage(pageID){
       populateAnaltics(insights.data)
     }, 250)
   })
-  FB.api('/' + pageID + '/posts?fields=link,created_time,full_picture,type,name,description,likes.limit(1).summary(true),shares,comments.limit(1).summary(true)', function(feed) {
+  FB.api('/' + pageID + '/posts?fields=link,created_time,full_picture,type,name,description,caption,likes.limit(1).summary(true),shares,comments.limit(1).summary(true)', function(feed) {
     populateResults(feed)
     fetch(feed.paging.next)
   });

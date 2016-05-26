@@ -50,33 +50,44 @@
 </div>
 
 <div class="ui modal">
-  <i class="close icon"></i>
-  <div class="header" id="modal-title">
-    Profile Picture
-  </div>
-  <div class="image content">
-    <div class="ui medium image">
-      <img src="/images/avatar/large/chris.jpg" id="modal-img">
-    </div>
-    <div class="description">
-      <div id="modal-content">
-
+  <div class="ui two column grid">
+    <div class="row">
+      <div class="seven wide column">
+          <div class="article-img ui huge round image">
+            <img src="/images/avatar/large/chris.jpg" id="article-img">
+          </div>
+      </div>
+      <div class="nine wide column">
+        <div class="article-block ui raised very padded segment">
+          <div class="ui form">
+            <div class="field"></div>
+            <div class="field">
+              <input type="text" placeholder="Name" value="" id="article-name">
+            </div>
+            <div class="field">
+              <input type="text" placeholder="Caption" value="" id="article-caption">
+            </div>
+            <div class="very padded field">
+              <textarea rows="5" id="article-description" placeholder="description"></textarea>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+
   <div class="actions">
     <div class="field">
-      <label>Publish To:</label>
-      <div class="ui sub header">Selection</div>
+      <div class="ui sub header">Syndication Group</div>
       <select multiple="" name="skills" class="ui fluid normal dropdown" id="publish-pages-list">
       <option value="">-- Managed FB Pages --</option>
       </select>
     </div>
     </br>
-    <div class="ui black deny button">
+    <div class="ui deny button">
       Cancel
     </div>
-    <div class="ui positive right labeled icon button">
+    <div class="ui blue positive right labeled icon button">
       Publish
       <i class="checkmark icon"  onClick="publishArticle()"></i>
     </div>

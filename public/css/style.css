@@ -121,6 +121,17 @@ body {
   cursor: pointer;
 }
 
+.article-img {
+  position: relative;
+  margin: 1.1rem;
+}
+
+.article-block {
+  position: relative;
+  top: 4.5rem;
+  margin-right: 0.8rem !important;
+}
+
 .remove {
   cursor: pointer;
 }

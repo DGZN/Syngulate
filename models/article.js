@@ -10,6 +10,7 @@ var Article = new Schema({
   likes: { type: Number },
   comments: { type: Number },
   description: { type: String },
+  caption: { type: String },
   date: { type: Date },
   created_at: Date,
   updated_at: Date

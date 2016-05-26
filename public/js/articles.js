@@ -62,8 +62,20 @@ $(function(){
         <td>\
         <i class="remove article large circle icon" data-id="'+article._id+'"></i>\
         </td>'
-      }).appendTo('#articles').click(function(){
-        openPostModal($(this).data('article'))
+      }).appendTo('#articles').click(function(e){
+        if ( $(e.target).data('id') ) {
+          var articleID = $(e.target).data('id')
+          $.ajax({
+            type: "POST",
+            url: '/api/v1/articles/' + articleID,
+            method: 'DELETE',
+            success: function(res){
+              $(evt.target).parent().parent().fadeOut(250).remove()
+            }
+          });
+        } else {
+          openPostModal($(this).data('article'))
+        }
       })
     }
   })
@@ -80,6 +92,10 @@ $(function(){
         }
       });
     }
+    if ( $(evt.target).data('article') ) {
+      var articleID = $(evt.target).data('id')
+      openPostModal($(this).data('article'))
+    }
   });
 
 })
@@ -87,9 +103,9 @@ $(function(){
 function openPostModal(article){
   loadManagedPages()
   $('.ui.modal').data('article', article)
-  $('#modal-title').html(article.name)
-  $('#modal-img').attr('src', article.img)
-  $('#modal-content').html(article.description)
+  $('#article-img').attr('src', article.img)
+  $('#article-caption').val(article.caption)
+  $('#article-description').html(article.description)
   $('.ui.modal')
     .modal({
       onApprove : function() {
@@ -98,18 +114,22 @@ function openPostModal(article){
     })
     .modal('show')
   ;
-  console.log("I was clicked", $('.ui.modal').data('article'));
 }
 
 function publishArticle(article){
-  console.log("publishing article", article);
+  article.name = $('#article-name').val();
+  article.caption = $('#article-caption').val();
+  article.description = $('#article-description').val();
   for (i in publishList) {
     var account = publishList[i]
     $.post('https://graph.facebook.com/v2.6/'+account.id+'/feed', {
-      message: article.description || ':)'
+      published: 1
+    , name: article.name
+    , caption: article.img
+    , description: article.description
+    , link: 'Syngulate.com'
     , picture: article.img
-    , link: 'syngulate.com'
-    , published: 1
+    , message: article.description || ':)'
     , access_token: account.access_token
     }
     , function(res){
