@@ -5,6 +5,7 @@ const error = require("debug")('syngulate:Api:errors');
 const db = require('../db');
 const Article = require('../models/article');
 const Page = require('../models/page');
+const WP = require( 'wordpress-rest-api' );
 
 router.get('/articles', function(req, res, next){
   Article.find(function(err, articles){
@@ -28,7 +29,23 @@ router.post('/articles', function(req, res) {
       return error(err)
     debug('['+doc.name+'] saved to storage.')
   })
-  res.send(article);
+  console.log("new article", req.body);
+  var wp = new WP({
+      endpoint: 'http://syngulate.com/core/wp-json',
+      username: 'syn_bot',
+      password: 'R@F1Fnp(4xXjq6K!IC(T(Svk'
+  });
+
+  wp.posts().post({
+      title: req.body.name,
+      content: req.body.description,
+      status: 'draft'
+  }).then(function( response ) {
+      console.log( response.id, response );
+      article.editID = response.id
+      article.editLink = 'http://syngulate.com/core/wp-admin/post.php?post='+response.id+'&action=edit'
+      res.send(article);
+  })
 });
 
 router.delete('/articles/:id', function(req, res) {

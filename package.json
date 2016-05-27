@@ -19,6 +19,7 @@
     "fbgraph": "^1.2.0",
     "mongoose": "^4.4.19",
     "react": "^0.14.7",
-    "semantic-ui": "^2.1.8"
+    "semantic-ui": "^2.1.8",
+    "wordpress-rest-api": "^0.7.0"
   }
 }

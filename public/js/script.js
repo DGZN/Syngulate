@@ -71,6 +71,8 @@ function fetch(url){
       setTimeout(function(){
         fetch(data.paging.next)
       }, 1000)
+    } else {
+      console.log("finished fetching all results", data);
     }
   })
 }
@@ -100,8 +102,9 @@ function populateAnaltics(stats){
   totalLikes.start();
 }
 
+
 function populateResults(results){
-  var data = []
+  var data = [];
   results.data.map(function(item){
     if (item.type !== 'status') {
       var card = {
@@ -127,7 +130,10 @@ function populateResults(results){
   data.sort((a, b) => {
     return b.likes - a.likes
   })
-  //data.pop()
+  renderResults(data)
+}
+
+function renderResults(data){
   data.map((card, i) => {
     setTimeout(function(){
       $('<div/>', {
@@ -183,6 +189,18 @@ function populateResults(results){
   })
 }
 
+var sorted = false;
+
+function sortResults(){
+  if ( ! sorted ) {
+    $('#results').html('')
+    data.sort((a, b) => {
+      return b.likes - a.likes
+    })
+    renderResults(data)
+  }
+}
+
 function searchPage(pageID){
   addPage(pageID)
   $('#results').html('')
@@ -190,7 +208,7 @@ function searchPage(pageID){
   FB.api('/' + pageID + '/insights/page_fans_country?period=lifetime', function(insights) {
     $('#like-stats-total').velocity({
       height: '120px'
-    }, 250)
+    }, 110)
     setTimeout(function(){
       populateAnaltics(insights.data)
     }, 250)

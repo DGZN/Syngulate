@@ -77,6 +77,10 @@ $(function(){
             method: 'DELETE',
             success: function(res){
               $(e.target).parent().parent().fadeOut(250).remove()
+              if (res.editLink) {
+                var win = window.open(res.editLink, '_blank');
+                win.focus();
+              }
             }
           });
         } else {
