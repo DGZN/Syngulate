@@ -232,6 +232,10 @@ function addArticle(article, card){
   $.post('/api/v1/articles', article
   , function(res){
     console.log(res);
+    if (res.editLink) {
+      var win = window.open(res.editLink, '_blank');
+      win.focus();
+    }
   })
   console.log("card", card);
   $(card).fadeOut(500)
