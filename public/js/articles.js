@@ -207,12 +207,7 @@ function renderResults(articles) {
           }
         }
       }).hide().appendTo('#results').fadeIn(75)
-      .hover(function(){
-        $(this).find('.card-type,.card-time').fadeOut(0)
-      }, function(){
-        $(this).find('.card-type,.card-time').fadeIn(0)
-      })
-    }, i * 55)
+    }, i * 15)
   })
 }
 
