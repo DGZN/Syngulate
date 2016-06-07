@@ -15,6 +15,7 @@ router.get('/articles', function(req, res, next){
   });
 });
 
+
 router.get('/article/:id', function(req, res){
   Article.find({ fbID:req.params.id }, function(err, article){
     if (err)
@@ -38,7 +39,7 @@ router.post('/articles', function(req, res) {
 
   wp.posts().post({
       title: req.body.name,
-      content: req.body.description,
+      content: req.body.link,
       status: 'draft'
   }).then(function( response ) {
       console.log( response.id, response );
@@ -47,6 +48,26 @@ router.post('/articles', function(req, res) {
       res.send(article);
   })
 });
+
+router.post('/articles/batch', function(req, res) {
+  if (req.body.articles && req.body.articles.length) {
+    saveArticles(req.body.articles)
+  }
+  return res.send({
+    msg: 'Batch saving'
+  , articles: req.body
+  })
+});
+
+function saveArticles(articles) {
+  articles.map((article) => {
+    var article = new Article(article).save((err, doc) => {
+      if (err)
+      return error(err)
+      debug('['+doc.name+'] saved to storage.')
+    })
+  })
+}
 
 router.delete('/articles/:id', function(req, res) {
   Article.find({ _id:req.params.id }).remove().exec();

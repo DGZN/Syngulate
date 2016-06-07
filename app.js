@@ -51,6 +51,14 @@ app.get('/articles', function(req, res){
   });
 });
 
+app.get('/saved', function(req, res){
+  Article.find(function(err, articles){
+    if (err)
+      throw err;
+    res.sendFile(path.join(__dirname + '/public/saved.html'));
+  });
+});
+
 app.get('/articles/:id', function(req, res){
   Article.find({ fbID: req.params.id }, function(err, article){
     if (err)

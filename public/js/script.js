@@ -44,8 +44,9 @@ $(function(){
 
 })
 
-const maxFetch = 4;
+const maxFetch = 20;
 var fetchCount = 0;
+var articles = [];
 
 function filterResults(){
   var filter = $(this).data('type')
@@ -71,8 +72,6 @@ function fetch(url){
       setTimeout(function(){
         fetch(data.paging.next)
       }, 1000)
-    } else {
-      console.log("finished fetching all results", data);
     }
   })
 }
@@ -102,13 +101,13 @@ function populateAnaltics(stats){
   totalLikes.start();
 }
 
-
 function populateResults(results){
   var data = [];
   results.data.map(function(item){
     if (item.type !== 'status') {
       var card = {
-          fbID: item.id
+          pageID: currentPageID || ''
+        , fbID: item.id
         , name: item.name || ''
         , caption: item.caption || ''
         , type: item.type
@@ -124,12 +123,14 @@ function populateResults(results){
       if (card.type == 'photo') {
         card.name = ''
       }
+      articles.push(card);
       data.push(card)
     }
   })
   data.sort((a, b) => {
     return b.likes - a.likes
   })
+  saveBatch(data)
   renderResults(data)
 }
 
@@ -201,7 +202,10 @@ function sortResults(){
   }
 }
 
+var currentPageID = '';
+
 function searchPage(pageID){
+  currentPageID = pageID
   addPage(pageID)
   $('#results').html('')
   $('#like-stats-total, #like-stats-today').addClass('hidden-fields')
@@ -237,8 +241,18 @@ function addArticle(article, card){
       win.focus();
     }
   })
-  console.log("card", card);
-  $(card).fadeOut(500)
+  if (card) {
+    $(card).fadeOut(500)
+  }
+}
+
+function saveBatch(articles) {
+  $.post('/api/v1/articles/batch', {
+    articles: articles
+  }
+  , function(res){
+    console.log(res);
+  })
 }
 
 function loadPages(){
@@ -252,9 +266,6 @@ function loadPages(){
     console.log("content", content);
     $('.ui.search')
     .search({
-      apiSettings: {
-        url: '//api.github.com/search/repositories?q={query}'
-      },
       fields: {
         title   : 'pageID'
       },

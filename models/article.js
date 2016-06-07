@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var Article = new Schema({
+  pageID: { type: String, required: true },
   fbID: { type: String, required: true, unique: true },
   name: { type: String },
   type: { type: String },

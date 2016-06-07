@@ -34,6 +34,7 @@ $(function(){
   ;
 
   $.get('/api/v1/articles', function(articles){
+    return renderResults(articles)
     for (i in articles) {
       var article = articles[i]
       $('<tr />', {
@@ -85,6 +86,59 @@ $(function(){
       })
     }
   })
+
+  function renderResults(articles) {
+    articles.sort((a, b) => {
+      return b.likes - a.likes
+    })
+    articles.map((card, i) => {
+      setTimeout(function(){
+        $('<div/>', {
+          class: 'card'
+          , "data-link": card.link
+          , "data-card": card
+          , html: '<div class="result image" data-type="'+card.type+'">                             \
+          <i class="card-type '+card.type+' "></i>                                                  \
+          <img src="'+card.img+'">                                                                  \
+          <span class="card-time" onClick="addArticle.bind('+card+','+this+')">'+moment(card.created_time).fromNow()+'</span>   \
+          <span class="add-article">                                                                \
+            <i class="add circle icon"></i>                                                         \
+          </span>                                                                                   \
+          </div>                                                                                    \
+          <div class="content">                                                                     \
+          <div class="header">'+card.name+'</div>                                                   \
+          <div class="meta">                                                                        \
+          '+card.description+'                                                                      \
+          </div>                                                                                    \
+          <div class="description">                                                                 \
+          </div>                                                                                    \
+          </div>                                                                                    \
+          <div class="extra content">                                                               \
+          <span>                                                                                    \
+          <i class="likes icon"></i>                                                                \
+          '+card.likes+'                                                                            \
+          </span>                                                                                   \
+          <span>                                                                                    \
+          <i class="_comments icon"></i>                                                            \
+          '+card.comments+'                                                                         \
+          </span>                                                                                   \
+          <span>                                                                                    \
+          <i class="shares icon"></i>                                                               \
+          '+card.shares+'                                                                           \
+          </span>                                                                                   \
+          </div>'
+          , click: function(e) {
+
+          }
+        }).hide().appendTo('#results').fadeIn(75)
+        .hover(function(){
+          $(this).find('.card-type,.card-time').fadeOut(0)
+        }, function(){
+          $(this).find('.card-type,.card-time').fadeIn(0)
+        })
+      }, i * 55)
+    })
+  }
 
   $(document).on('click', function(evt) {
     evt.preventDefault()
