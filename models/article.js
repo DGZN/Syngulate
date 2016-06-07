@@ -6,6 +6,7 @@ var Article = new Schema({
   fbID: { type: String, required: true, unique: true },
   name: { type: String },
   type: { type: String },
+  link: { type: String },
   img: { type: String },
   shares: { type: Number },
   likes: { type: Number },
