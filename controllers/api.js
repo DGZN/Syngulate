@@ -12,7 +12,7 @@ router.get('/articles', function(req, res, next){
     if (err)
       throw err;
     res.send(articles);
-  });
+  }).sort({likes: -1}).limit(250);
 });
 
 
