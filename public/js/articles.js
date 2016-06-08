@@ -159,12 +159,12 @@ $.get('/api/v1/articles', function(data){
 
 var _articles = []
 
-function renderResults(articles) {
+function renderResults(_articles) {
   $('#results').fadeOut(1).html('').fadeIn(10)
-  articles.sort((a, b) => {
+  _articles.sort((a, b) => {
     return b.likes - a.likes
   })
-  articles.map((card, i) => {
+  _articles.map((card, i) => {
     setTimeout(function(){
       $('<div/>', {
         class: 'card'
@@ -213,7 +213,7 @@ function renderResults(articles) {
 
 function filterArticles(filter) {
   console.log("filtering articles", filter);
-  _articles.map((article) => {
+  articles.map((article) => {
     if (filter.type && filter.type == 'all') {
       return article;
     }
@@ -226,7 +226,7 @@ function filterArticles(filter) {
         return article;
     }
   })
-  renderResults(_articles)
+  renderResults(articles)
 }
 
 function showFilterSidebar(){
