@@ -33,8 +33,7 @@ $.get('/api/v1/scrapes', function(data){
       console.log(card);
       $('<div/>', {
         class: 'card'
-        , html: '<div class="result image" >                             \                                               \
-        <img src="'+card.img+'">                                                                  \
+        , html: '<div class="result image" style="background-image: url("'+card.img+'")">                             \                                               \
         <span class="card-time" >'+card.date+'</span>   \                                                                            \
         </div>                                                                                    \
         <div class="content">                                                                     \

@@ -4,6 +4,34 @@
 <title>Syngulate Administrator Dashboard</title>
 <meta charset="UTF-8">
 </head>
+<style>
+.card {
+  width: 470px  !important;
+  height: 500px !important;
+}
+
+.result .image {
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.card img {
+  width: 470px !important;
+  height: 246px !important;
+}
+
+.content {
+  max-height: 200px !important;
+}
+
+.meta img {
+  display: none !important;
+}
+
+#results {
+  padding-left: 3rem;
+}
+</style>
 <body>
 <link rel="stylesheet" href="/css/style.css"/>
 <link rel="stylesheet" type="text/css" href="./dist/semantic.min.css"/>
@@ -29,8 +57,8 @@
     </a>
   </div>
 </div>
-<div class="ui raised very padded fluid container segment">
-  <div class="ui center aligned fluid container">
+<div class="ui center aligned container">
+  <div class="ui very padded raised segment">
     <div id="results" class="ui link cards">
 
     </div>
