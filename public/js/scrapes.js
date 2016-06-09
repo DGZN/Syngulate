@@ -31,6 +31,7 @@ $.get('/api/v1/scrapes', function(data){
     var card = articles[i]
     setTimeout(function(){
       console.log(card);
+      card.desc = card.desc.replace('<em>','').replace('</em>','').replace('<em>','').replace('</em>','').replace('<em>','').replace('</em>','')
       $('<div/>', {
         class: 'card'
         , html: '<div class="result image" style="background-image: url("'+card.img+'")">                             \                                               \
@@ -47,7 +48,6 @@ $.get('/api/v1/scrapes', function(data){
         </div>                                                                                    \
         <div class="extra content">                                                               \
         <span>                                                                                    \
-        <i class="likes icon"></i>                                                                \
         '+card.likes+'                                                                            \
         </span>                                                                                   \
         <span>                                                                                    \
