@@ -46,7 +46,7 @@ body {
 }
 
 .meta {
-  max-height: 200px;
+  max-height: 180px;
   overflow: hidden;
   text-align: left;
   padding-top: 0.9rem;

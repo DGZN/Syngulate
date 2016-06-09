@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var Scrapes = new Schema({
   url: { type: String, required: true },
-  link: { type: String },
+  link: { type: String, unique: true },
   host: { type: String, required: true },
   title: { type: String },
   desc: { type: String },
