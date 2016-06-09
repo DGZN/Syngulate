@@ -3,6 +3,7 @@ const router = express.Router();
 const debug = require("debug")('syngulate:Api:debug');
 const error = require("debug")('syngulate:Api:errors');
 const db = require('../db');
+const Scrape = require('../models/scrape');
 const Article = require('../models/article');
 const Page = require('../models/page');
 const WP = require( 'wordpress-rest-api' );
@@ -30,7 +31,6 @@ router.post('/articles', function(req, res) {
       return error(err)
     debug('['+doc.name+'] saved to storage.')
   })
-  console.log("new article", req.body);
   var wp = new WP({
       endpoint: 'http://syngulate.com/core/wp-json',
       username: 'syn_bot',
@@ -42,7 +42,6 @@ router.post('/articles', function(req, res) {
       content: req.body.link,
       status: 'draft'
   }).then(function( response ) {
-      console.log( response.id, response );
       article.editID = response.id
       article.editLink = 'http://syngulate.com/core/wp-admin/post.php?post='+response.id+'&action=edit'
       res.send(article);
@@ -74,6 +73,22 @@ router.delete('/articles/:id', function(req, res) {
   res.send({
     status: true
   });
+});
+
+router.get('/scrapes', function(req, res, next){
+  Scrape.find(function(err, scrapes){
+    if (err)
+      throw err;
+    res.send(scrapes);
+  }).sort({likes: -1});
+});
+
+router.post('/scrapes', function(req, res) {
+  var article = new Scrape(req.body).save((err, doc) => {
+    if (err)
+      return error(err)
+    debug('['+doc.name+'] saved to storage.')
+  })
 });
 
 router.get('/pages', function(req, res, next){

@@ -59,6 +59,11 @@ app.get('/saved', function(req, res){
   });
 });
 
+app.get('/scrapes', function(req, res){
+  res.sendFile(path.join(__dirname + '/public/scrapes.html'));
+});
+
+
 app.get('/articles/:id', function(req, res){
   Article.find({ fbID: req.params.id }, function(err, article){
     if (err)

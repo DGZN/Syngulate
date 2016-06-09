@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <body>
+    <textarea rows=200 cols="200" id="parsed"></textarea>
+  </body>
+  <script>
+  $(function(){
+    var _output = 'config firewall address \n '
+    $.get('https://ip-ranges.amazonaws.com/ip-ranges.json', function(data){
+      data.prefixes.map((region) => {
+        _output += 'edit "'+region.region+'" \n set subnet "'+region.ip_prefix+'" \n next \n'
+      })
+      _output += 'end'
+      $('#parsed').html(_output)
+    })
+  })
+  </script
+</html>
