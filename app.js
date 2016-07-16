@@ -26,14 +26,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-// this should really be in a config file!
-var conf = {
-    client_id:      '510164202499231'
-  , client_secret:  'ee7a8e9490991cba1d85b6ecd9f982cd'
-  , scope:          'email, user_about_me, user_birthday, user_location'
-  , redirect_uri:   'http://localhost:3131/auth/facebook'
-};
-
 
 // Routes
 
