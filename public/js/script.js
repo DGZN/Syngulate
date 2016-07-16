@@ -44,7 +44,7 @@ $(function(){
 
 })
 
-const maxFetch = 20;
+const maxFetch = 2000;
 var fetchCount = 0;
 var articles = [];
 
@@ -105,6 +105,10 @@ function populateResults(results){
   var data = [];
   results.data.map(function(item){
     if (item.type !== 'status') {
+      var likes = 0;
+      if (item.likes && item.likes.summary) {
+        likes = item.comments.summary.total_count
+      }
       var card = {
           pageID: currentPageID || ''
         , fbID: item.id
@@ -113,7 +117,7 @@ function populateResults(results){
         , type: item.type
         , img:  item.full_picture
         , shares: item.shares ? item.shares.count : 0
-        , likes: item.likes.summary ? item.likes.summary.total_count : 0
+        , likes: likes
         , comments: item.comments.summary ? item.comments.summary.total_count : 0
         , link: item.link
         , description: item.description || ''

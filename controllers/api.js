@@ -16,6 +16,18 @@ router.get('/articles', function(req, res, next){
   }).sort({likes: -1}).limit(250);
 });
 
+router.get('/articles/:pageID', function(req, res, next){
+  var params = { pageID: req.params.pageID }
+  if (req.query.type) {
+    params['type'] = req.query.type
+  }
+  Article.find(params, function(err, articles){
+    if (err)
+      throw err;
+    res.send(articles);
+  }).sort({likes: -1});
+});
+
 
 router.get('/article/:id', function(req, res){
   Article.find({ fbID:req.params.id }, function(err, article){
