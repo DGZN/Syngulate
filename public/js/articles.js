@@ -102,7 +102,7 @@ $.get('/api/v1/pages', function(pages){
 })
 
 
-$.get('/api/v1/articles', function(data){
+$.get('/api/v1/articles/TheMindUnleashed?type=photo', function(data){
   articles = data;
   return renderResults(data)
   for (i in articles) {
