@@ -201,10 +201,6 @@ function renderResults(_articles) {
         '+card.shares+'                                                                           \
         </span>                                                                                   \
         </div>'
-        , click: function(e) {
-          var win = window.open(card.link, '_blank');
-          win.focus();
-        }
       }).hide().appendTo('#results').fadeIn(75)
     }, i * 15)
   })
