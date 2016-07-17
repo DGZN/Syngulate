@@ -182,7 +182,7 @@ function renderResults(_articles) {
         <div class="content">                                                                     \
         <div class="header">'+card.name+'</div>                                                   \
         <div class="meta">                                                                        \
-        '+card.description+'                                                                      \
+        <a href="'+card.link+'" target="_blank">View</a>                                                          \
         </div>                                                                                    \
         <div class="description">                                                                 \
         </div>                                                                                    \
