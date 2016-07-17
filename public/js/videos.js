@@ -202,10 +202,8 @@ function renderResults(_articles) {
         </span>                                                                                   \
         </div>'
         , click: function(e) {
-          if (e.target.tagName == 'IMG') {
-            var win = window.open(card.link, '_blank');
-            win.focus();
-          }
+          var win = window.open(card.link, '_blank');
+          win.focus();
         }
       }).hide().appendTo('#results').fadeIn(75)
     }, i * 15)
