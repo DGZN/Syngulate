@@ -43,31 +43,6 @@ $(function(){
     })
   ;
 
-  $(document).on('click', function(evt) {
-    evt.preventDefault()
-    if ( $(evt.target).data('edit') ) {
-      var articleID = $(evt.target).data('edit')
-      window.location = '/articles/' + articleID;
-      return false;
-    } else {
-      if ( $(evt.target).data('id') ) {
-        var articleID = $(evt.target).data('id')
-        $.ajax({
-          type: "POST",
-          url: '/api/v1/articles/' + articleID,
-          method: 'DELETE',
-          success: function(res){
-            $(evt.target).parent().parent().fadeOut(250).remove()
-          }
-        });
-      }
-      if ( $(evt.target).data('article') ) {
-        var articleID = $(evt.target).data('id')
-        openPostModal($(this).data('article'))
-      }
-    }
-  });
-
   $('.filter-all').click(function(){
     filterArticles({
       type: 'all'
