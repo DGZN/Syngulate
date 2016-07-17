@@ -51,6 +51,11 @@ app.get('/saved', function(req, res){
   });
 });
 
+app.get('/videos', function(req, res){
+  res.sendFile(path.join(__dirname + '/public/videos.html'));
+});
+
+
 app.get('/scrapes', function(req, res){
   res.sendFile(path.join(__dirname + '/public/scrapes.html'));
 });
