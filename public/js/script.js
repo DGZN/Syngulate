@@ -256,7 +256,7 @@ function saveBatch(articles) {
   }
   , function(res){
     console.log(res);
-    console.log("Last Article", res.articles[0].date);
+    console.log("Last Article", res.articles['articles'][0].date);
   })
 }
 
