@@ -44,7 +44,7 @@ $(function(){
 
 })
 
-const maxFetch = 2000;
+const maxFetch = 600;
 var fetchCount = 0;
 var articles = [];
 
@@ -135,7 +135,7 @@ function populateResults(results){
     return b.likes - a.likes
   })
   saveBatch(data)
-  renderResults(data)
+  //renderResults(data)
 }
 
 function renderResults(data){
@@ -256,6 +256,7 @@ function saveBatch(articles) {
   }
   , function(res){
     console.log(res);
+    console.log("Last Article", res.articles[0].date);
   })
 }
 
