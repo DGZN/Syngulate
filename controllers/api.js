@@ -17,7 +17,8 @@ router.get('/articles', function(req, res, next){
 });
 
 router.get('/articles/:pageID', function(req, res, next){
-  var params = { pageID: req.params.pageID }
+  //var params = { pageID: req.params.pageID }
+  var params = {  }
   if (req.query.type) {
     params['type'] = req.query.type
   }
@@ -25,7 +26,7 @@ router.get('/articles/:pageID', function(req, res, next){
     if (err)
       throw err;
     res.send(articles);
-  }).sort({likes: -1}).limit(1000);
+  }).sort({likes: -1}).limit(2500);
 });
 
 
