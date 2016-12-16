@@ -7,17 +7,17 @@ const Scrape = require('../models/scrape');
 const Article = require('../models/article');
 const Page = require('../models/page');
 const WP = require( 'wordpress-rest-api' );
+const merge = require('object-merge');
 
 router.get('/articles', function(req, res, next){
-  Article.find(function(err, articles){
+  Article.find(merge({}, req.query), function(err, articles){
     if (err)
-      throw err;
+    throw err;
     res.send(articles);
-  }).sort({likes: -1}).limit(250);
+  }).sort({likes: -1}).limit(500);
 });
 
 router.get('/articles/:pageID', function(req, res, next){
-  //var params = { pageID: req.params.pageID }
   var params = {  }
   if (req.query.type) {
     params['type'] = req.query.type

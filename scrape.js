@@ -1,7 +1,7 @@
 
 // Count all of the links from the io.js build page
-const db = require('./db');
-const Scrape = require('./models/scrape');
+// const db = require('./db');
+// const Scrape = require('./models/scrape');
 const debug = require('debug')('scraper')
 var jsdom = require("jsdom");
 
@@ -12,36 +12,20 @@ const fetchPage = function(url, cb){
     url,
     ["http://code.jquery.com/jquery.js"],
     function (err, window) {
-      window.$(".recent-post").each(function(){
-        var image = window.$(this).find('.et-main-image img').attr('src')
-        var links = window.$(this).find('h2 a')
-        var content = window.$(this).text().replace(/^\s*\n/gm,'')
-        var title = ''
-        var link = ''
-        links.each(function(){
-          title = window.$(this).text();
-          link = window.$(this).attr('href');
-        })
-        var _scrape = {
-          url: 'http://theantimedia.org/'
-        , link: link
-        , host: 'TheAntiMedia'
-        , title: title
-        , desc: content
-        , img: image
-        }
-        var scrape = new Scrape(_scrape).save((err, doc) => {
-          if (err)
-            return error(err)
-          debug('['+doc.title+'] saved to storage.')
-        })
-      });
+      var $ = window.$;
+      //console.log("HN Links", $('.view-content').text());
+      $('.view-content .views-row').each(function(){
+        var self = window.$(this)
+        console.log($(this).text())
+        console.log("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
+      })
     }
   );
 }
 
-fetchPage('http://theantimedia.org/', (posts) => {
-  parsePosts(posts)
+fetchPage('http://www.zerohedge.com/', (posts) => {
+  console.log(require('util').inspect(posts, { depth: null }));
+  //parsePosts(posts)
 })
 
 // var express = require('express');

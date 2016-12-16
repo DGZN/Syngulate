@@ -1,8 +1,8 @@
 var FeedParser = require('feedparser')
   , request = require('request');
 
-const db = require('./db');
-const Scrape = require('./models/scrape');
+// const db = require('./db');
+// const Scrape = require('./models/scrape');
 const debug = require('debug')('scraper')
 const error = require('debug')('scraper')
 
@@ -42,11 +42,13 @@ feedparser.on('readable', function() {
     , desc: item.description
     , img: $.html('img').split('src="')[1].split('"')[0]
     }
-    //return console.log("Image", _scrape.img);
-    var scrape = new Scrape(_scrape).save((err, doc) => {
-      if (err)
-        return error(err)
-      debug('['+doc.title+'] saved to storage.')
-    })
+    console.log(require('util').inspect({
+      title: _scrape.title
+    }, { depth: null }));
+    // var scrape = new Scrape(_scrape).save((err, doc) => {
+    //   if (err)
+    //     return error(err)
+    //   debug('['+doc.title+'] saved to storage.')
+    // })
   }
 });

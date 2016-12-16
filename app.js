@@ -60,6 +60,9 @@ app.get('/scrapes', function(req, res){
   res.sendFile(path.join(__dirname + '/public/scrapes.html'));
 });
 
+app.get('/posts', function(req, res){
+  res.sendFile(path.join(__dirname + '/public/posts.html'));
+});
 
 app.get('/articles/:id', function(req, res){
   Article.find({ fbID: req.params.id }, function(err, article){

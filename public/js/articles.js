@@ -256,21 +256,34 @@ function publishArticle(article){
   article.name = $('#article-name').val();
   article.caption = $('#article-caption').val();
   article.description = $('#article-description').val();
+  article.img = 'https://scontent.fsnc1-2.fna.fbcdn.net/v/t1.0-1/c40.0.160.160/p160x160/13770261_1303710409654223_8338364428569364400_n.jpg?oh=871efa5aa69cabbb554592dbdbb7a224&oe=58300F9F'
+  article.link = 'https://scontent.fsnc1-2.fna.fbcdn.net/v/t1.0-1/c40.0.160.160/p160x160/13770261_1303710409654223_8338364428569364400_n.jpg?oh=871efa5aa69cabbb554592dbdbb7a224&oe=58300F9F'
+  // var account = {}
+  // account.id = '1303709329654331'
+  // console.log("publishing", article)
+  // $.post('https://graph.facebook.com/v2.6/'+account.id+'/feed', {
+  //   published: true
+  // , message: article.description || ':)'
+  // }
+  // , function(res){
+  //   console.log(res);
+  // })
   for (i in publishList) {
     var account = publishList[i]
-    $.post('https://graph.facebook.com/v2.6/'+account.id+'/feed', {
-      published: 1
-    , name: article.name
-    , caption: article.caption
-    , description: article.description
-    , link: article.link
-    , picture: article.img
-    , message: article.description || ':)'
-    , access_token: account.access_token
-    }
-    , function(res){
-      console.log(res);
-    })
+    console.log("account", account)
+    // $.post('https://graph.facebook.com/v2.6/'+account.id+'/feed', {
+    //   published: 1
+    // , name: article.name
+    // , caption: article.caption
+    // , description: article.description
+    // , link: article.link
+    // , picture: article.img
+    // , message: article.description || ':)'
+    // , access_token: account.access_token
+    // }
+    // , function(res){
+    //   console.log(res);
+    // })
   }
 }
 

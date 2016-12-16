@@ -20,7 +20,9 @@
   },
   "devDependencies": {
     "fbgraph": "^1.2.0",
+    "json2csv": "^3.7.3",
     "mongoose": "^4.4.19",
+    "object-merge": "^2.5.1",
     "react": "^0.14.7",
     "wordpress-rest-api": "^0.7.0"
   }

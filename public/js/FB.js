@@ -1,6 +1,7 @@
 function statusChangeCallback(response) {
   if (response.status === 'connected') {
     $('#pageID').attr('disabled', false)
+    $('#fb-login-button').hide()
   } else if (response.status === 'not_authorized') {
     // The person is logged into Facebook, but not your app.
     // document.getElementById('status').innerHTML = 'Please log ' +
@@ -14,6 +15,7 @@ function statusChangeCallback(response) {
 }
 
 function checkLoginState() {
+  console.log("checking login")
   FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
   });

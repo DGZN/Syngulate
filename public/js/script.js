@@ -139,6 +139,7 @@ function populateResults(results){
 }
 
 function renderResults(data){
+  articles = [];
   data.map((card, i) => {
     setTimeout(function(){
       $('<div/>', {
