@@ -24,7 +24,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="article in articles" class="top aligned" @click="routeTo(article.guid)">
+          <tr v-for="article in articles" class="top aligned" @click="routeTo(article.link)">
             <td>
               <img :src="article.img" alt="" />
             </td>
@@ -32,11 +32,6 @@
               <h1 class="ui header">
                 {{article.title}}
               </h1>
-              <div class="description">
-                <h2>
-                  {{article.description}}
-                </h2>
-              </div>
               <h3 class="ui header">
 
                 <a class="ui right label">
@@ -59,27 +54,19 @@
     </div>
     <div v-show="view == 'panel'" class="ui padded text segment">
       <div class="ui doubling cards">
-        <router-link :to="'/content/' + article.guid" class="ui centered raised card" v-for="article in orderedArticles" v-show="match(article.pageID)">
+        <div @click="routeTo(article.fbID)" class="ui centered raised card" v-for="article in orderedArticles" v-show="match(article.pageID)">
           <div class="image">
             <img :src="article.img">
           </div>
           <div class="content">
-            <a class="header">{{ article.name }}</a>
-            <div class="meta">
-              <span class="date"></span>
-            </div>
-            <div class="description">
-            </div>
           </div>
           <div class="extra content">
-            <a>
+            <h5>
               {{ article.pageID }}
-            </a>
-            <a>
-              ({{ article.likes }} Likes)
-            </a>
+            </h5>
           </div>
-        </router-link>
+          <a class="ui bottom right attached label">{{ article.likes }} likes</a>
+        </div>
       </div>
     </div>
   </div>
@@ -103,7 +90,7 @@
     computed: {
       orderedArticles: function () {
         var articles = this.articles.sort((a, b) => {
-          return a.likes - b.likes;
+          return b.likes - a.likes;
         })
         if (this.filter.types.length==0) {
           return articles;
@@ -111,13 +98,12 @@
           var articles = [];
           var filters = this.filter.types;
           this.articles.filter((article) => {
-            console.log("type", article.type, 'looking for', filters.toString())
             if (filters.indexOf(article.type)>=0) {
               articles.push(article)
             }
           })
           return articles.sort((a, b) => {
-            return a.likes - b.likes;
+            return b.likes - a.likes;
           })
         }
       },
@@ -178,14 +164,17 @@
         }
         return true;
       },
+      uppercase: function (string) {
+        return string.toUpperCase()
+      },
       lowercase: function (string) {
         return string.toLowerCase()
       },
       route: function (guid) {
         return '/content/' + guid
       },
-      routeTo: function (guid) {
-        this.$router.push({ path: '/content/' + guid })
+      routeTo: function (id) {
+        this.$router.push({ path: '/content/' + id })
       },
       tableView: function () {
         this.view = 'table'
@@ -227,6 +216,10 @@
   }
 
   .icon {
+    cursor: pointer;
+  }
+
+  .card {
     cursor: pointer;
   }
 

@@ -8,14 +8,6 @@
         <router-link to="/content" class="item" active-class="active" exact>
           Content
         </router-link>
-        <router-link to="/users" class="item" active-class="active" exact>
-          Users
-        </router-link>
-        <div class="right menu">
-          <div class="item">
-              <div @click="toggleEditContentModal" class="ui primary button">+</div>
-          </div>
-        </div>
       </div>
     </div>
       <EditContentModal />
