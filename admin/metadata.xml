@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://apple.com/itunes/importer" version="film5.2">
+    <provider>GiantInteractive</provider>
+    <language>en-US</language>
+    <video>
+        <type>film</type>
+        <subtype>feature</subtype>
+        <vendor_id>STADLF70016</vendor_id>
+        <country>GB</country>
+        <original_spoken_locale>en</original_spoken_locale>
+        <title>A Christmas Star</title>
+        <studio_release_title>A Christmas Star</studio_release_title>
+        <synopsis>Born in dramatic circumstances under the Christmas Star, Noelle believes she has the gift to perform strange miracles. When conniving developer McKerrod threatens her peaceful life, she teams up with a misfit gang to save the village from demolition. However, one by one her friends lose faith in Noelle’s abilities and she is left to fight McKerrod on her own. It all hinges on a final showdown in Belfast’s historic Stormont building as Noelle implores politicians, her friends and the watching world to believe in the true meaning of Christmas...love.</synopsis>
+        <production_company>Cinemagic</production_company>
+        <copyright_cline>2015, Cinemagic, all rights reserved.</copyright_cline>
+        <theatrical_release_date>2015-01-01</theatrical_release_date>
+        <regions>
+            <region>
+                <territory>CA</territory>
+                <copyright_cline>2015, Cinemagic, all rights reserved.</copyright_cline>
+                <theatrical_release_date>2015-01-01</theatrical_release_date>
+            </region>
+            <region>
+                <territory>AU</territory>
+                <copyright_cline>2015, Cinemagic, all rights reserved.</copyright_cline>
+                <theatrical_release_date>2015-01-01</theatrical_release_date>
+            </region>
+            <region>
+                <territory>NZ</territory>
+                <copyright_cline>2015, Cinemagic, all rights reserved.</copyright_cline>
+                <theatrical_release_date>2015-01-01</theatrical_release_date>
+            </region>
+        </regions>
+        <genres>
+            <genre code="KIDS-FAMILY-00"/>
+        </genres>
+        <ratings>
+            <rating system="mpaa" code="NR"/>
+            <rating system="ca-chvrs" code="NR"/>
+            <rating system="ca-rcq" code="NR"/>
+            <rating system="au-oflc" code="G"/>
+            <rating system="nz-oflc" code="G" reason="Suitable for all audiences."/>
+        </ratings>
+        <cast>
+            <cast_member>
+                <display_name>Erin Galway-Kendrick</display_name>
+                <characters>
+                    <character>
+                        <reference_id>NOELLE_O_HANLON</reference_id>
+                        <character_name>Noelle O'Hanlon</character_name>
+                    </character>
+                </characters>
+            </cast_member>
+            <cast_member>
+                <display_name>Robert James-Collier</display_name>
+                <characters>
+                    <character>
+                        <reference_id>PAT_MCKERROD</reference_id>
+                        <character_name>Pat McKerrod</character_name>
+                    </character>
+                </characters>
+            </cast_member>
+            <cast_member>
+                <display_name>Bronagh Waugh</display_name>
+                <characters>
+                    <character>
+                        <reference_id>MARIA_O_HANLON</reference_id>
+                        <character_name>Maria O'Hanlon</character_name>
+                    </character>
+                </characters>
+            </cast_member>
+        </cast>
+        <crew>
+            <crew_member>
+                <display_name>Richard Elson</display_name>
+                <roles>
+                    <role>Director</role>
+                </roles>
+            </crew_member>
+            <crew_member>
+                <display_name>Joan Burney Keatings</display_name>
+                <roles>
+                    <role>Producer</role>
+                    <role>Director</role>
+                </roles>
+            </crew_member>
+            <crew_member>
+                <display_name>Maire Campbell</display_name>
+                <roles>
+                    <role>Screenwriter</role>
+                </roles>
+            </crew_member>
+        </crew>
+        <chapters>
+            <chapter>
+                <start_time>00:00:00</start_time>
+                <title locale="en-US">1</title>
+                <artwork_file>
+                    <file_name>00-00-00.jpg</file_name>
+                    <size>326394</size>
+                    <checksum type="md5">207823013b112d3eed261925aa68e67d</checksum>
+                </artwork_file>
+            </chapter>
+            <chapter>
+                <start_time>00:11:44</start_time>
+                <title locale="en-US">2</title>
+                <artwork_file>
+                    <file_name>00-11-44.jpg</file_name>
+                    <size>279444</size>
+                    <checksum type="md5">80f199a62aa5ccad17479a7eb57966b4</checksum>
+                </artwork_file>
+            </chapter>
+            <chapter>
+                <start_time>00:23:25</start_time>
+                <title locale="en-US">3</title>
+                <artwork_file>
+                    <file_name>00-23-25.jpg</file_name>
+                    <size>224043</size>
+                    <checksum type="md5">8354a1a1c354695c52d50e60a2bd61ef</checksum>
+                </artwork_file>
+            </chapter>
+            <chapter>
+                <start_time>00:30:43</start_time>
+                <title locale="en-US">4</title>
+                <artwork_file>
+                    <file_name>00-30-43.jpg</file_name>
+                    <size>297992</size>
+                    <checksum type="md5">e7919c33253ccd1df944125d99c9ef8e</checksum>
+                </artwork_file>
+            </chapter>
+            <chapter>
+                <start_time>00:41:00</start_time>
+                <title locale="en-US">5</title>
+                <artwork_file>
+                    <file_name>00-41-00.jpg</file_name>
+                    <size>167213</size>
+                    <checksum type="md5">5b9465e817d1413a93ef73bdec9a8cf6</checksum>
+                </artwork_file>
+            </chapter>
+            <chapter>
+                <start_time>00:50:00</start_time>
+                <title locale="en-US">6</title>
+                <artwork_file>
+                    <file_name>00-50-00.jpg</file_name>
+                    <size>312570</size>
+                    <checksum type="md5">c0d20b211f78b79ae6cb7bde1984b30f</checksum>
+                </artwork_file>
+            </chapter>
+            <chapter>
+                <start_time>01:00:08</start_time>
+                <title locale="en-US">7</title>
+                <artwork_file>
+                    <file_name>01-00-08.jpg</file_name>
+                    <size>315116</size>
+                    <checksum type="md5">39c183374355550c77bc81cc61e49517</checksum>
+                </artwork_file>
+            </chapter>
+            <chapter>
+                <start_time>01:10:17</start_time>
+                <title locale="en-US">8</title>
+                <artwork_file>
+                    <file_name>01-10-17.jpg</file_name>
+                    <size>307325</size>
+                    <checksum type="md5">70cab0a368653119ff60be17c0f9f23d</checksum>
+                </artwork_file>
+            </chapter>
+            <chapter>
+                <start_time>01:16:11</start_time>
+                <title locale="en-US">9</title>
+                <artwork_file>
+                    <file_name>01-16-11.jpg</file_name>
+                    <size>227887</size>
+                    <checksum type="md5">693f9a2d14f623e0e9747244f80d148c</checksum>
+                </artwork_file>
+            </chapter>
+        </chapters>
+        <accessibility_info>
+            <accessibility role="captions" available="true"/>
+        </accessibility_info>
+        <assets vendor_id="STADLF70016">
+            <asset type="full">
+                <data_file role="source">
+                    <locale name="en"/>
+                    <file_name>sm_aits_AChristmasStar_1080p_2398_200_2ch_prores_R1.mov</file_name>
+                    <size>107507813801</size>
+                    <checksum type="md5">e0d537c56c0ab3c7ce6b6daafca67e70</checksum>
+                    <attribute name="crop.left">4</attribute>
+                    <attribute name="crop.right">4</attribute>
+                    <attribute name="crop.top">58</attribute>
+                    <attribute name="crop.bottom">58</attribute>
+                    <attribute name="image.textless_master">false</attribute>
+                    <attribute name="image.burned_forced_narrative.locale">en</attribute>
+                </data_file>
+                <data_file role="captions">
+                    <locale name="en-US"/>
+                    <file_name>AChristmasStar_2997NDF_Hr0_iTunes.scc</file_name>
+                    <size>182262</size>
+                    <checksum type="md5">10d8d7a4208382cf5abbb1ef320f1dfa</checksum>
+                </data_file>
+            </asset>
+            <asset type="preview">
+                <territories>
+                    <territory>WW</territory>
+                </territories>
+                <data_file role="source">
+                    <locale name="en"/>
+                    <file_name>sm_aits_AChristmasStar_TRL_1080p_2398_200_2ch_prores_R2.mov</file_name>
+                    <size>1554618696</size>
+                    <checksum type="md5">f5c26d4c3488ae2f7dbe25020ade2363</checksum>
+                    <attribute name="crop.left">4</attribute>
+                    <attribute name="crop.right">4</attribute>
+                    <attribute name="crop.top">58</attribute>
+                    <attribute name="crop.bottom">58</attribute>
+                    <attribute name="image.textless_master">false</attribute>
+                    <attribute name="image.burned_forced_narrative.locale">en</attribute>
+                </data_file>
+            </asset>
+            <asset type="artwork">
+                <territories>
+                    <territory>WW</territory>
+                </territories>
+                <data_file>
+                    <locales>
+                        <locale name="en"/>
+                    </locales>
+                    <file_name>AChristmasStar_Poster_iTunes.jpg</file_name>
+                    <size>2039869</size>
+                    <checksum type="md5">df50ead6283f5a63f2ed580b32bfb4f2</checksum>
+                </data_file>
+            </asset>
+        </assets>
+        <products>
+            <product>
+                <territory>US</territory>
+                <cleared_for_sale>true</cleared_for_sale>
+                <cleared_for_hd_sale>true</cleared_for_hd_sale>
+                <wholesale_price_tier>6</wholesale_price_tier>
+                <hd_wholesale_price_tier>108</hd_wholesale_price_tier>
+                <preorder_sales_start_date>2015-11-17</preorder_sales_start_date>
+                <sales_start_date>2015-12-01</sales_start_date>
+                <cleared_for_vod>true</cleared_for_vod>
+                <vod_type>Library</vod_type>
+                <available_for_vod_date>2015-12-01</available_for_vod_date>
+                <cleared_for_hd_vod>true</cleared_for_hd_vod>
+            </product>
+            <product>
+                <territory>CA</territory>
+                <cleared_for_sale>true</cleared_for_sale>
+                <cleared_for_hd_sale>true</cleared_for_hd_sale>
+                <wholesale_price_tier>6</wholesale_price_tier>
+                <hd_wholesale_price_tier>108</hd_wholesale_price_tier>
+                <preorder_sales_start_date>2015-11-17</preorder_sales_start_date>
+                <sales_start_date>2015-12-01</sales_start_date>
+                <cleared_for_vod>true</cleared_for_vod>
+                <vod_type>Library</vod_type>
+                <available_for_vod_date>2015-12-01</available_for_vod_date>
+                <cleared_for_hd_vod>true</cleared_for_hd_vod>
+            </product>
+            <product>
+                <territory>AU</territory>
+                <cleared_for_sale>true</cleared_for_sale>
+                <cleared_for_hd_sale>true</cleared_for_hd_sale>
+                <wholesale_price_tier>6</wholesale_price_tier>
+                <hd_wholesale_price_tier>108</hd_wholesale_price_tier>
+                <preorder_sales_start_date>2015-11-17</preorder_sales_start_date>
+                <sales_start_date>2015-12-01</sales_start_date>
+                <cleared_for_vod>true</cleared_for_vod>
+                <vod_type>Library</vod_type>
+                <available_for_vod_date>2015-12-01</available_for_vod_date>
+                <cleared_for_hd_vod>true</cleared_for_hd_vod>
+            </product>
+            <product>
+                <territory>NZ</territory>
+                <cleared_for_sale>true</cleared_for_sale>
+                <cleared_for_hd_sale>true</cleared_for_hd_sale>
+                <wholesale_price_tier>6</wholesale_price_tier>
+                <hd_wholesale_price_tier>108</hd_wholesale_price_tier>
+                <preorder_sales_start_date>2015-11-17</preorder_sales_start_date>
+                <sales_start_date>2015-12-01</sales_start_date>
+                <cleared_for_vod>true</cleared_for_vod>
+                <vod_type>Library</vod_type>
+                <available_for_vod_date>2015-12-01</available_for_vod_date>
+                <cleared_for_hd_vod>true</cleared_for_hd_vod>
+            </product>
+        </products>
+    </video>
+</package>

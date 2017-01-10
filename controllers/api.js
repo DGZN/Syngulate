@@ -12,7 +12,7 @@ const merge = require('object-merge');
 router.get('/articles', function(req, res, next){
   Article.find(merge({}, req.query), function(err, articles){
     if (err)
-    throw err;
+      throw err;
     res.send(articles);
   }).sort({likes: -1}).limit(500);
 });

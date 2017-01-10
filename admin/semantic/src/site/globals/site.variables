@@ -1,0 +1,8 @@
+/*******************************
+     User Global Variables
+*******************************/
+
+@headerFont        : 'Open Sans Condensed', sans-serif;
+@pageFont          : 'Open Sans Condensed', sans-serif;
+
+@googleFontFamily  : 'Open+Sans+Condensed:300,300i,700';

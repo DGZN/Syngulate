@@ -1,0 +1,256 @@
+<template>
+  <div class="">
+    <div id="filter-panel" class="ui padded segment">
+      <div class="ui transparent icon search input">
+        <input id="search" type="text" placeholder="Search...">
+      </div>
+      <div class="ui text right aligned filter ">
+        <select name="typeDropdown" multiple="" class="ui types multiple selection tiny dropdown">
+          <option v-for="type in types" :value="lowercase(type)">{{ type }}</option>
+        </select>
+        <div class="view icons">
+          <i v-show="view == 'table'" @click="panelView()" class="ui browser icon"></i>
+          <i v-show="view == 'panel'" @click="tableView()" class="ui tasks icon"></i>
+        </div>
+      </div>
+    </div>
+    <div v-show="view == 'table'" class="ui padded text segment">
+      <table class="ui table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Meta</th>
+            <th>Category</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="article in articles" class="top aligned" @click="routeTo(article.guid)">
+            <td>
+              <img :src="article.img" alt="" />
+            </td>
+            <td>
+              <h1 class="ui header">
+                {{article.title}}
+              </h1>
+              <div class="description">
+                <h2>
+                  {{article.description}}
+                </h2>
+              </div>
+              <h3 class="ui header">
+
+                <a class="ui right label">
+
+                </a
+              </h3>
+            </td>
+            <td>
+
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th></th>
+            <th colspan="2"></th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <div v-show="view == 'panel'" class="ui padded text segment">
+      <div class="ui doubling cards">
+        <router-link :to="'/content/' + article.guid" class="ui centered raised card" v-for="article in orderedArticles" v-show="match(article.pageID)">
+          <div class="image">
+            <img :src="article.img">
+          </div>
+          <div class="content">
+            <a class="header">{{ article.name }}</a>
+            <div class="meta">
+              <span class="date"></span>
+            </div>
+            <div class="description">
+            </div>
+          </div>
+          <div class="extra content">
+            <a>
+              {{ article.pageID }}
+            </a>
+            <a>
+              ({{ article.likes }} Likes)
+            </a>
+          </div>
+        </router-link>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+
+    props: ['settings'],
+
+    data () {
+      return {
+        view: 'panel',
+        keyword: '',
+        filter: {
+          types: []
+        },
+        articles: []
+      }
+    },
+    computed: {
+      orderedArticles: function () {
+        var articles = this.articles.sort((a, b) => {
+          return a.likes - b.likes;
+        })
+        if (this.filter.types.length==0) {
+          return articles;
+        } else {
+          var articles = [];
+          var filters = this.filter.types;
+          this.articles.filter((article) => {
+            console.log("type", article.type, 'looking for', filters.toString())
+            if (filters.indexOf(article.type)>=0) {
+              articles.push(article)
+            }
+          })
+          return articles.sort((a, b) => {
+            return a.likes - b.likes;
+          })
+        }
+      },
+      types: function () {
+        return ['Link', 'Photo', 'Video'];
+      },
+    },
+    created: function () {
+      $.get(this.settings.baseURI + '/articles', (articles) => {
+        this.articles = articles;
+      })
+    },
+    mounted: function () {
+      var self = this;
+      $('.ui.dropdown')
+        .dropdown('set text', 'Types')
+        .dropdown({
+          onAdd: (added) => {
+            if (this.filter.types.indexOf(added)==-1)
+              this.filter.types.push(added)
+          },
+          onRemove: (removed) => {
+            var types = this.filter.types;
+            this.filter.types.splice(types.indexOf(removed), 1)
+          },
+          onLabelCreate: function (value, text) {
+            $(this).addClass('tiny')
+            return $(this)
+          }
+        })
+      ;
+      $('#search')
+        .bind('input', function() {
+          var keyword = $(this).val()
+          if ( keyword.length > 3 ) {
+            self.keyword = keyword
+          } else {
+            self.keyword = ''
+          }
+        })
+      ;
+      function scroll(e) {
+        var currentTop = $(window).scrollTop()
+        if (currentTop > 50) {
+          $('#filter-panel').addClass('fixed menu')
+        } else {
+          $('#filter-panel').removeClass('fixed menu')
+        }
+      }
+      window.onscroll = scroll;
+    },
+    methods: {
+      match: function (pageID) {
+        if (this.keyword.length) {
+          var match = pageID.toLowerCase().search(this.keyword.toLowerCase())
+          if ( match == -1 )
+            return false;
+        }
+        return true;
+      },
+      lowercase: function (string) {
+        return string.toLowerCase()
+      },
+      route: function (guid) {
+        return '/content/' + guid
+      },
+      routeTo: function (guid) {
+        this.$router.push({ path: '/content/' + guid })
+      },
+      tableView: function () {
+        this.view = 'table'
+      },
+      panelView: function () {
+        this.view = 'panel'
+      }
+    }
+  }
+</script>
+
+<style scoped>
+  tr {
+    position: relative;
+    vertical-align: top;
+  }
+  tr > td {
+    cursor: pointer;
+  }
+
+  h1 {
+    margin: 0.5rem 0 0.4rem 0 !important;
+    font-size: 1.6rem !important;
+    font-weight: 300 !important;
+  }
+
+  h2 {
+    font-size: 1.2rem !important;
+    font-weight: 200 !important;
+  }
+
+  h3 {
+    font-size: 1.2rem !important;
+    font-weight: 200 !important;
+  }
+
+  .description {
+    max-width: 55%;
+  }
+
+  .icon {
+    cursor: pointer;
+  }
+
+  .filter {
+    position: absolute;;
+    top: 0.68rem;
+    right: 2rem;
+    float: right;
+    display: block;
+  }
+
+  .ui.label.tiny {
+    font-size: 0.8em !important;
+  }
+
+  .search.input {
+    width: 55% !important;
+  }
+
+  .view.icons {
+    position: relative;
+    float: right;
+    margin-top: 0.8rem;
+    margin-right: 1.7rem;
+    margin-left: 2rem;
+  }
+</style>
