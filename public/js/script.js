@@ -71,7 +71,7 @@ function fetch(url){
     if (fetchCount < maxFetch) {
       setTimeout(function(){
         fetch(data.paging.next)
-      }, 1000)
+      }, 1300)
     }
   })
 }

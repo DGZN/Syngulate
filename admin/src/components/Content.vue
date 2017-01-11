@@ -16,31 +16,47 @@
     </div>
     <div v-show="view == 'table'" class="ui padded text segment">
       <table class="ui table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Meta</th>
-            <th>Category</th>
-          </tr>
-        </thead>
         <tbody>
-          <tr v-for="article in articles" class="top aligned" @click="routeTo(article.link)">
+          <tr v-for="article in articles" class="top aligned" @click="routeTo(article.fbID)">
             <td>
+              <h2 class="ui dividing header">
+                {{ article.name }}
+              </h2 class="ui dividing header">
               <img :src="article.img" alt="" />
             </td>
             <td>
-              <h1 class="ui header">
-                {{article.title}}
-              </h1>
-              <h3 class="ui header">
-
-                <a class="ui right label">
-
-                </a
-              </h3>
-            </td>
-            <td>
-
+              <div class="ui very padded segment">
+                <div class="ui fluid centered grid">
+                  <div class="centered column">
+                    <div class="ui blue medium statistic">
+                      <div class="value">
+                        {{ article.likes }}
+                      </div>
+                      <div class="label">
+                        Likes
+                      </div>
+                    </div>
+                    <br>
+                    <div class="ui black medium statistic">
+                      <div class="value">
+                        {{ article.comments }}
+                      </div>
+                      <div class="label">
+                        Coments
+                      </div>
+                    </div>
+                    <br>
+                    <div class="ui red medium statistic">
+                      <div class="value">
+                        {{ article.shares }}
+                      </div>
+                      <div class="label">
+                        Shares
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </td>
           </tr>
         </tbody>
@@ -59,6 +75,9 @@
             <img :src="article.img">
           </div>
           <div class="content">
+            <h5>
+              {{ article.name }}
+            </h5>
           </div>
           <div class="extra content">
             <h5>
