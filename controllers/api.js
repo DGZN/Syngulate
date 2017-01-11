@@ -14,7 +14,7 @@ router.get('/articles', function(req, res, next){
     if (err)
       throw err;
     res.send(articles);
-  }).sort({likes: -1}).limit(500);
+  }).sort({likes: -1}).limit(1500);
 });
 
 router.get('/articles/:pageID', function(req, res, next){
